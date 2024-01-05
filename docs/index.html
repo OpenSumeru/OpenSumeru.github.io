@@ -8,7 +8,8 @@
   <!-- Bootstrap CSS from Bootswatch Minty -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.bootcdn.net/ajax/libs/bootswatch/5.3.1/minty/bootstrap.min.css" rel="stylesheet">
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.2/marked.min.js" integrity="sha512-rfX4p3RNnxdwLT3wWP1K0NR3ztTobn+sISlT9WhxDDK00zNYbQ6MCHA5OHm0hqKAzEMXYCgFrp8iY/ER5MkXqA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/index.js"></script>
   <!-- Custom styles for this template -->
   <style>
     /* Add your custom styles here */
@@ -19,7 +20,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">
     <div class="container-fluid">
-      <!-- img src="img/Sumeru_Emblem_Night.webp" class="rounded img-thumbnail img-fluid" style="height: 48px;" alt="Toggle navigation"-->
+      <img src="img/Sumeru_Emblem_Night.webp" class="rounded-circle navbar-avatar img-thumbnail" style="width: 40px;height: 40px;" alt="Toggle navigation">
       <a class="navbar-brand" href="#">OpenSumeru</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -40,11 +41,11 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Project</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Easy Akasha Render</a>
               <a class="dropdown-item" href="#">Another action</a>
               <a class="dropdown-item" href="#">Something else here</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
+              <a class="dropdown-item" href="#">More Project</a>
             </div>
           </li>
         </ul>
@@ -65,13 +66,13 @@
           <h1 class="display-4">OpenSumeru</h1>
           <p class="lead">An opensource softwares organization for Sumeru lovers.</p>
         </div>
-        <div class="row">
+        <div class="row" id="Introduction-md">
           
         </div>
       </div>
       <div class="col-4">
         <div class="row">
-          <img src="img/Sumeru_Emblem_Night.webp" class="rounded img-thumbnail img-fluid">
+          <img src="img/Sumeru_Emblem_Night.webp" class="rounded navbar-avatar img-thumbnail">
         </div>
         <div class="row mt-4">
           <a href="" style="width: 75px;">
@@ -88,8 +89,28 @@
     <!-- Add more sections as needed (e.g., About, Services, Contact) -->
 
   </div>
+  <script>
+    fetch('data/context/IntroductionMain.md')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+        document.getElementById('Introduction-md').innerHTML = marked.parse('## About OpenSumeru\nOpenSumeru is an software organization for believers in the [God of Wisdom](https://genshin-impact.fandom.com/wiki/Lesser_Lord_Kusanali). We believe that we are one of [Sumeru](https://genshin-impact.fandom.com/wiki/Sumeru).\nOpenSumeru tries to make all kind of software that can motivate the development of Sumeru. We accept any kind of softwares and all Sumeru lovers.\nThe Goal of OpenSumeru is to make a Sumeru Version of any kind of software. All projects are opensourced and named after element of Sumeru (like Akasha, Dendro and so on).');
+      }
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById('Introduction-md').innerHTML = marked.parse(data);
+    })
+    .catch(error => {
+      document.getElementById('Introduction-md').innerHTML = marked.parse('## About OpenSumeru\nOpenSumeru is an software organization for believers in the [God of Wisdom](https://genshin-impact.fandom.com/wiki/Lesser_Lord_Kusanali). We believe that we are one of [Sumeru](https://genshin-impact.fandom.com/wiki/Sumeru).\nOpenSumeru tries to make all kind of software that can motivate the development of Sumeru. We accept any kind of softwares and all Sumeru lovers.\nThe Goal of OpenSumeru is to make a Sumeru Version of any kind of software. All projects are opensourced and named after element of Sumeru (like Akasha, Dendro and so on).');
+      console.error('Fetch error:', error);
+      // 在 fetch 失败时抛出错误，以便进行进一步处理
+      throw error;
+    });
 
+  </script>
   <!-- Bootstrap JS and dependencies (Bootstrap 5) -->
+  
   <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/js/bootstrap.bundle.js"></script>
 </body>
 </html>
